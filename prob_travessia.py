@@ -3,6 +3,7 @@ from dataclasses import dataclass
 from typing import List, Tuple, Iterable
 from itertools import islice
 from agentes.problemas.travessia import ProblemaTravessia, EstadoTravessia
+from percepcoes import PercepcoesJogador
 from regras_jogo.regras_travessia import RegrasTravessia
 
 @dataclass
@@ -29,13 +30,9 @@ class prob_travessia:
             return False
     
     @staticmethod
-    def avaliacao() -> int:
-        a = RegrasTravessia()
-        instance_variables = vars(a)
-        tab = (instance_variables['t1'])
-        esquerda = tab['Esquerda']
-        resultado = (len(esquerda))
-        return resultado
+    def avaliacao(percepcao_mundo: PercepcoesJogador) -> int:
+        tamanho = len(percepcao_mundo.personagens_esquerda)
+        return tamanho
 
     @staticmethod
     def fitness() -> int:

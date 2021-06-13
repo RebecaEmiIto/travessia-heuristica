@@ -1,8 +1,6 @@
-from typing import Tuple
 from .abstrato import AgenteAbstrato
 from percepcoes import PercepcoesJogador
 from acoes import AcaoJogador, Individuo
-from prob_travessia import prob_travessia
 
 class Maquina(AgenteAbstrato):
     def __init__(self):
@@ -12,7 +10,7 @@ class Maquina(AgenteAbstrato):
         """ Inspeciona a disposicao dos elementos no objeto de visao e escreve
         na tela para o usuário saber o que seu agente está percebendo.
         """
-        #print(f'Contador = {self.count}')
+
         print('--- Tabuleiro após a ultima jogada: ---\n')
         print('|[ 1-Ovelha || 2-Repolho || 3-Lobo ]|\n')
 
@@ -32,7 +30,6 @@ class Maquina(AgenteAbstrato):
         
         if percepcao_mundo.mensagem_jogo:
             print(f'Mensagem do jogo: {percepcao_mundo.mensagem_jogo}')
-            
         else:
             self.count += 1
 
@@ -52,3 +49,5 @@ class Maquina(AgenteAbstrato):
         
         p1 = entrada
         return p1
+
+#apenas um teste

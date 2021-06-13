@@ -20,7 +20,7 @@ def iniciar_jogo():
     # Inicializar e configurar jogo
     jogo = construir_jogo()
     personagem_jogador = jogo.registrarAgentePersonagem(Personagens.O_JOGADOR)
-    opcao = input('[ 1 - Humano ][ 2 - Maquina ][ 3 - Busca Gulosa ][ 4 - A Estrela ]\n')
+    opcao = int(input('[ 1 - Humano ][ 2 - Maquina ][ 3 - Busca Gulosa ][ 4 - A Estrela ]\n'))
     if opcao == 1:
         agente_jogador = construir_agente(TiposAgentes.PREPOSTO_HUMANO, Personagens.O_JOGADOR)
     elif opcao == 2:
@@ -33,10 +33,10 @@ def iniciar_jogo():
     tempo_de_jogo = 0
     while not jogo.isFim():
         # Mostrar mundo ao jogador
-        ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
-        agente_jogador.adquirirPercepcao(ambiente_perceptivel)
         # Decidir jogada e apresentar ao jogo
         if opcao == 2:
+            ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
+            agente_jogador.adquirirPercepcao(ambiente_perceptivel)
             personagem = prob_travessia.prob_travessia.create_ordem_aleatoria(1)
             for i in personagem:
                 for j in i.tabuleiro:
@@ -50,8 +50,21 @@ def iniciar_jogo():
                     
                     ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
                     agente_jogador.adquirirPercepcao(ambiente_perceptivel)
-            
+        elif opcao == 3:
+            ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
+            agente_jogador.adquirirPercepcao(ambiente_perceptivel)
+
+            acao = agente_jogador.escolherProximaAcao(ambiente_perceptivel)
+            jogo.registrarProximaAcao(personagem_jogador, acao)
+            # Atualizar jogo
+            tempo_corrente = ler_tempo()
+            jogo.atualizarEstado(tempo_corrente - tempo_de_jogo)
+            tempo_de_jogo += tempo_corrente
+
         else:
+            ambiente_perceptivel = jogo.gerarCampoVisao(personagem_jogador)
+            agente_jogador.adquirirPercepcao(ambiente_perceptivel)
+
             acao = agente_jogador.escolherProximaAcao()
             jogo.registrarProximaAcao(personagem_jogador, acao)
             #Atualizar jogo

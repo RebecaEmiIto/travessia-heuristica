@@ -3,6 +3,7 @@ from .abstrato import AgenteAbstrato
 from percepcoes import PercepcoesJogador
 from acoes import AcaoJogador, Individuo
 from prob_travessia import prob_travessia
+import random
 import heapq
 
 class BuscaGulosa(AgenteAbstrato):
@@ -39,21 +40,20 @@ class BuscaGulosa(AgenteAbstrato):
         
         if percepcao_mundo.mensagem_jogo:
             print(f'Mensagem do jogo: {percepcao_mundo.mensagem_jogo}')
-            
         else:
             self.count += 1
     
     def busca_gulosa(self):
         pass
         
-    def escolherProximaAcao(self):  
+    def escolherProximaAcao(self, percepcao_mundo: PercepcoesJogador):
         print('Escreva sua jogada no formato [número]')
-        personagem = prob_travessia.prob_travessia.create_ordem_aleatoria(1)
-        for i in personagem:
-            for j in i.tabuleiro:
-                print(j)
-                p1 = BuscaGulosa.parse_jogada(j)
-            resultado = prob_travessia.avaliacao()
+        personagem = random.randint(0, 3)
+        print(f'personagem: {personagem}')
+        p1 = BuscaGulosa.parse_jogada(personagem)
+        esquerda = percepcao_mundo.personagens_esquerda
+        resultado = prob_travessia.avaliacao(percepcao_mundo)
+        print(f'Resultado: {resultado}')
         return AcaoJogador.SelecionarIndividuo(p1)
 
     @staticmethod
@@ -67,11 +67,3 @@ class BuscaGulosa(AgenteAbstrato):
         
         p1 = entrada
         return p1
-
-"""
- Essa implementação usa matrizes para as quais e para todos os k ,
- contando elementos a partir de zero. Para efeito de comparação, os
- elementos não existentes são considerados infinitos. A propriedade 
- interessante de um heap é que seu menor elemento é sempre a raiz ,
- .heap[k] <= heap[2*k+1]heap[k] <= heap[2*k+2]heap[0]
-"""

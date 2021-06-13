@@ -1,3 +1,4 @@
+from agentes.abstrato import AgenteAbstrato
 
 
 class A_Estrela(AgenteAbstrato):

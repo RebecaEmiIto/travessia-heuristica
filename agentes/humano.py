@@ -11,9 +11,9 @@ class AgentePrepostoESHumano(AgenteAbstrato):
         """ Inspeciona a disposicao dos elementos no objeto de visao e escreve
         na tela para o usuário saber o que seu agente está percebendo.
         """
-        #print(f'Contador = {self.count}')
+
         print('--- Tabuleiro após a ultima jogada: ---\n')
-        print('|[ 1-Ovelha || 2-Repolho || 3-Lobo ]|\n')
+        print('|[0-Nenhum || 1-Ovelha || 2-Repolho || 3-Lobo ]|\n')
 
         print(percepcao_mundo.personagens_esquerda)
 
@@ -56,5 +56,5 @@ class AgentePrepostoESHumano(AgenteAbstrato):
             3: Individuo.Lobo
         }
         
-        p1 = entrada
+        p1 = int(entrada)
         return p1
