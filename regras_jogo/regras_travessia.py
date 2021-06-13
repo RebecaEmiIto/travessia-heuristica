@@ -1,5 +1,5 @@
 import sys
-from typing import Tuple
+from typing import Set, Tuple
 from .regras_abstratas import AbstractRegrasJogo
 from .personagens import Personagens
 from percepcoes import PercepcoesJogador
@@ -18,9 +18,6 @@ class RegrasTravessia(AbstractRegrasJogo):
         self.id_personagem = {Personagens.O_JOGADOR: 0}
         self.acao_personagem = {0: None}
         self.msg_jogador = None
-    
-    def tabuleiro(self):
-        return self.t1
 
     def registrarAgentePersonagem(self, personagem:list):
         """ Cria ou recupera id de um personagem agente.

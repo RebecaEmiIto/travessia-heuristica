@@ -4,7 +4,6 @@ from typing import List, Tuple, Iterable
 from itertools import islice
 from agentes.problemas.travessia import ProblemaTravessia, EstadoTravessia
 from regras_jogo.regras_travessia import RegrasTravessia
-from percepcoes import PercepcoesJogador
 
 @dataclass
 class prob_travessia:
@@ -21,44 +20,29 @@ class prob_travessia:
             yield prob_travessia([random.randint(0,3) for _ in range(7)])
     
     @property
-    def is_objetivo(self) -> bool:
-    #    ordem = prob_travessia.create_ordem_aleatora(1)
-    #    for i in ordem:
-    #        print(i.tabuleiro)
-    #        ProblemaTravessia.acoes(i.tabuleiro)
-        return 1#ProblemaTravessia.teste_objetivo(ordem)
-        
+    def is_objetivo(lista) -> bool:
+        obj1 = [1,0,3,1,2,0,1]
+        obj2 = [1,0,2,1,3,0,1]
+        if lista == obj1 or lista == obj2:
+            return True
+        else:
+            return False
     
-    @property
-    def avaliacao(self) -> int:
-        """A função de avaliação nos retorna uma pontuação de qualidade
-        do atual estado em relação ao objetivo. O objetivo tem necessariamente
-        pontuação zero, e quanto maior, pior a avaliação.
-        """
-        t1 = EstadoTravessia.tabuleiro
-        for i in t1:
-            print(i)
-        return 1#sum(1 for _ in self.num_jogadas)
+    @staticmethod
+    def avaliacao() -> int:
+        a = RegrasTravessia()
+        instance_variables = vars(a)
+        tab = (instance_variables['t1'])
+        esquerda = tab['Esquerda']
+        resultado = (len(esquerda))
+        return resultado
 
-    @property
-    def fitness(self) -> int:
+    @staticmethod
+    def fitness() -> int:
         """Fitness é o complemento de avaliação, e vice-versa."""
-        total = sum(n for n in range(self.num_jogadas))
-        return total - self.avaliacao
-
-# Testes unitários de programador preguiçoso
-
-#solucao1 = prob_travessia([1,0,3,1,2,0,1])
-#assert solucao1.is_objetivo == True
-#assert solucao1.avaliacao == 0
-
-def tabuleiro(self):
-    tab = RegrasTravessia.tabuleiro(self)
-    return tab
-
-def teste(tabuleiro):
-    t1 = tabuleiro['Esquerda']
-    print(len(t1))
-
-if __name__ == '__main__':
-    tabuleiro()
+        a = RegrasTravessia()
+        instance_variables = vars(a)
+        tab = (instance_variables['t1'])
+        esquerda = tab['Esquerda']
+        resultado = (len(esquerda)) - 3
+        return resultado

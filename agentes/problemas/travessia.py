@@ -6,10 +6,10 @@ class Personagens:
     p1: int
 
     def __hash__(self) -> int:
-        return hash(self.p1) + hash(self.p2)
-    
+        return hash(self.p1)
+
     def __str__(self) -> str:
-        return f'Pessoa 1: ({self.p1} || Pessoa 2: {self.p1})'
+        return f'{self.p1}'
 
 @dataclass
 class EstadoTravessia:
@@ -30,7 +30,7 @@ class ProblemaTravessia:
             'Direita': []
             }
         return nivel
-    
+
     @staticmethod
     def acoes(estado: EstadoTravessia) -> Sequence[Mover]:
         acoes_possiveis = list()
@@ -48,7 +48,7 @@ class ProblemaTravessia:
                         acoes_possiveis.append(Mover(individuo1))
 
         return acoes_possiveis
-    
+
     @staticmethod
     def resultado(estado: EstadoTravessia, acao: Mover) -> EstadoTravessia:
         estado_resultante = EstadoTravessia(set(estado))
@@ -92,7 +92,7 @@ class ProblemaTravessia:
                 raise ValueError("Personagem {p1} nã encontrado na Direita")
         print(f'estado resultante tabu = {estado_resultante}')
         return estado_resultante
-    
+
     def ValidacaoEsquerda(self) -> bool:
         tabuleiro = self.t1
         esquerda = tabuleiro['Esquerda']
@@ -132,7 +132,7 @@ class ProblemaTravessia:
             return True
         else:
             return False
-    
+
     @staticmethod
     def custo(inicial: EstadoTravessia, acao: Mover,
               resultante: EstadoTravessia) -> int:
