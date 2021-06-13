@@ -10,7 +10,6 @@ class BuscaGulosa(AgenteAbstrato):
         (avaliacao, mivimento)?
         Talvez seje bom
         q ele vai registrar a posição deacordo com o tamanho da arvore no nó
-        
     """
     def __init__(self):
         self.lista_prioridade = [(3, {1: [1,2,3], 2: []}), (3, None), (2, 1)]
